@@ -18,13 +18,13 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...          
       # Lệnh build sẽ lấy Dockerfile tại thư mục hiện tại (.)
-      - docker build -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker build -t $REPOSITORY_URI/backend/pfm:latest .
+      #- docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
       
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/backend/pfm:latest
+      #- docker push $REPOSITORY_URI:$IMAGE_TAG
 
