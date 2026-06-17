@@ -28,15 +28,4 @@ phases:
       - echo Pushing the Docker image...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      
-      # Cấu hình kết nối EKS
-      - echo Configuring EKS access...
-      - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_DEFAULT_REGION
-      
-      # Di chuyển đến thư mục chứa file deployment.yaml của bạn (Giả sử bạn đặt nó trong service/pfm)
-      - cd $CODEBUILD_SRC_DIR/service/pfm
-      - echo Updating Kubernetes deployment manifest...
-      - sed -i "s|IMAGE_PLACEHOLDER|$REPOSITORY_URI:$IMAGE_TAG|g" deployment.yaml
-      
-      - echo Deploying to Amazon EKS...
-      - kubectl apply -f deployment.yaml
+
